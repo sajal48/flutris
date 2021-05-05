@@ -9,6 +9,7 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  GlobalKey<GameBlocksState> _keyGame = GlobalKey();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,7 +33,7 @@ class _HomeState extends State<Home> {
                   flex: 3,
                   child: Padding(
                       padding: const EdgeInsets.fromLTRB(10, 10, 5, 10),
-                      child: GameBlocks()),
+                      child: GameBlocks(key: _keyGame)),
                 ),
                 Flexible(
                   flex: 1,
@@ -46,9 +47,20 @@ class _HomeState extends State<Home> {
                             height: 30,
                           ),
                           ElevatedButton(
-                            onPressed: () {},
-                            child:
-                                Text("Start", style: TextStyle(fontSize: 18)),
+                            onPressed: () {
+                              setState(() {
+                                _keyGame.currentState != null &&
+                                        _keyGame.currentState.isPLaying
+                                    ? _keyGame.currentState.endGame()
+                                    : _keyGame.currentState.startGame();
+                              });
+                            },
+                            child: Text(
+                                _keyGame.currentState != null &&
+                                        _keyGame.currentState.isPLaying
+                                    ? 'End'
+                                    : 'Start',
+                                style: TextStyle(fontSize: 18)),
                           ),
                         ],
                       )),
