@@ -11,7 +11,7 @@ class Blocks {
   int orientationindex;
   Blocks(this.oriantations, Color color, this.orientationindex) {
     x = 3;
-    y = -width - 1;
+    y = -width;
     this.color = color;
   }
 
@@ -24,7 +24,7 @@ class Blocks {
   }
 
   get color {
-    return oriantations[0][0];
+    return oriantations[0][0].color;
   }
 
   get subBlocks {
@@ -42,7 +42,7 @@ class Blocks {
   get height {
     int maxY = 0;
     subBlocks.forEach((subBlocks) {
-      if (subBlocks.y > maxY) maxY = subBlocks.Y;
+      if (subBlocks.y > maxY) maxY = subBlocks.y;
     });
     return maxY + 1;
   }
@@ -147,15 +147,15 @@ class LBlock extends Blocks {
             SubBlock(x: 0, y: 1),
           ],
           [
+            SubBlock(x: 0, y: 0),
+            SubBlock(x: 1, y: 0),
+            SubBlock(x: 1, y: 1),
+            SubBlock(x: 1, y: 2),
+          ],
+          [
             SubBlock(x: 2, y: 0),
             SubBlock(x: 0, y: 1),
             SubBlock(x: 1, y: 1),
-            SubBlock(x: 2, y: 1),
-          ],
-          [
-            SubBlock(x: 0, y: 0),
-            SubBlock(x: 1, y: 0),
-            SubBlock(x: 2, y: 0),
             SubBlock(x: 2, y: 1),
           ]
         ], Colors.green[400], orientationindex);

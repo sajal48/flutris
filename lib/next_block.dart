@@ -1,4 +1,6 @@
+import 'package:flutris/home.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class NextBlock extends StatefulWidget {
   @override
@@ -29,6 +31,9 @@ class _NextBlockState extends State<NextBlock> {
             aspectRatio: 1,
             child: Container(
               color: Colors.white,
+              child: Center(
+                child: Provider.of<Data>(context).getNxtBlocksWidget(),
+              ),
             ),
           )
         ],
